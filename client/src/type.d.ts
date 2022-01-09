@@ -12,7 +12,7 @@ interface ItemProps {
 }
 
 type ApiDataType = {
-	message: string;
+	message?: string;
 	status: string;
 	item: IItem;
 	items: IItem[];

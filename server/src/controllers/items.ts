@@ -1,18 +1,28 @@
 import { Response, Request } from "express";
 import { IItem } from "../interfaces/item";
 import Item from "../models/item";
-import { csvParser } from "../utils/csv";
+import { parseCSV } from "../utils/csvParser";
+import { statusCodes } from "../utils/statusCodes";
+import mongoose from "mongoose";
 
-const getItems = async (req: Request, res: Response): Promise<void> => {
+/**
+ * Fetch all Inventory items
+ * @route GET /items
+ */
+const getItems = async (_: Request, res: Response): Promise<void> => {
 	try {
 		const items: IItem[] = await Item.find();
-		res.status(200).json({ items });
+		res.status(statusCodes.SUCCESS).json({ items: items });
 	} catch (err) {
 		res.status(500).json({ message: "Internal Server Error" });
 	}
 };
 
-const addItem = async (req: Request, res: Response): Promise<void> => {
+/**
+ * Create a new Inventory item
+ * @route POST /items
+ */
+const postItem = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const body = req.body as Pick<IItem, "name" | "description" | "count">;
 
@@ -23,18 +33,28 @@ const addItem = async (req: Request, res: Response): Promise<void> => {
 		});
 
 		const newItem = await item.save();
-		const allItems = await Item.find();
 
 		res.status(200).json({
-			message: "Item added",
 			item: newItem,
-			items: allItems,
 		});
 	} catch (err) {
-		res.status(500).json({ message: "Internal server Error" });
+		if (err instanceof mongoose.Error.ValidationError) {
+			res.status(statusCodes.BAD_REQUEST).json({
+				message: "Validation Error",
+			});
+		} else {
+			res.status(statusCodes.SERVER_ERROR).json({
+				message: "Internal server Error",
+			});
+		}
 	}
 };
 
+/**
+ *
+ * Upadte an inventory item
+ * @route PUT /items/:id
+ */
 const updateItem = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const {
@@ -42,53 +62,69 @@ const updateItem = async (req: Request, res: Response): Promise<void> => {
 			body,
 		} = req;
 
-		const updateItem: IItem | null = await Item.findByIdAndUpdate(id, body);
-		if (updateItem == null) {
-			res.status(401).json({ message: "Item not found" });
+		const updateItem: IItem | null = await Item.findById(id);
+		if (updateItem) {
+			updateItem.name = body.name;
+			updateItem.description = body.description;
+			updateItem.count = body.count;
+			const updatedItem = await updateItem.save();
+			res.status(statusCodes.SUCCESS).json({
+				item: updatedItem,
+			});
 		} else {
-			const allItems: IItem[] = await Item.find();
-			res.status(200).json({
-				message: "Item updated",
-				item: updateItem,
-				items: allItems,
+			res.status(statusCodes.NOT_FOUND).json({
+				message: "Item not found",
 			});
 		}
 	} catch (err) {
-		res.status(500).json({ message: "Internal Server error" });
+		res.status(statusCodes.SERVER_ERROR).json({
+			message: "Internal Server error",
+		});
 	}
 };
 
+/**
+ * Delete an inventory item
+ * @route DELETE /items/:id
+ */
 const deleteItem = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const {
 			params: { id },
 		} = req;
-
-		const deletedItem: IItem | null = await Item.findByIdAndDelete(id);
-		if (deletedItem == null) {
-			res.status(401).json({ message: "Item not found" });
-		} else {
-			const allItems: IItem[] = await Item.find();
-
-			res.status(200).json({
-				message: "Item deleted",
+		const deleteItem: IItem | null = await Item.findById(id);
+		console.log(deleteItem);
+		if (deleteItem) {
+			const deletedItem = await deleteItem.remove();
+			res.status(statusCodes.SUCCESS).json({
 				item: deletedItem,
-				items: allItems,
+			});
+		} else {
+			res.status(statusCodes.NOT_FOUND).json({
+				message: "Item not found",
 			});
 		}
 	} catch (err) {
-		res.status(500).json({ message: "Internal Server error" });
+		res.status(statusCodes.SERVER_ERROR).json({
+			message: "Internal Server error",
+		});
 	}
 };
 
-const downloadItems = async (req: Request, res: Response): Promise<void> => {
+/**
+ * Request all items then parse them into csv format
+ * @route GET /items/download
+ */
+const downloadItems = async (_: Request, res: Response): Promise<void> => {
 	try {
 		const items: IItem[] = await Item.find();
-		const csv = csvParser(JSON.parse(JSON.stringify(items)));
-		res.status(200).send(Buffer.from(csv));
+		const csvData = parseCSV(items);
+		res.status(200).send(Buffer.from(csvData));
 	} catch (err) {
-		throw err;
+		res.status(statusCodes.SERVER_ERROR).json({
+			message: "Internal Server error",
+		});
 	}
 };
 
-export { getItems, addItem, updateItem, deleteItem, downloadItems };
+export { getItems, postItem, updateItem, deleteItem, downloadItems };

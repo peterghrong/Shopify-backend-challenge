@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import itemsRouter from "./routes/items";
-dotenv.config();
 
 const app: Express = express();
+dotenv.config();
 
 const PORT: string | number = process.env.PORT || 4000;
 
@@ -23,5 +23,5 @@ mongoose
 		)
 	)
 	.catch((error) => {
-		throw error;
+		console.log(error);
 	});

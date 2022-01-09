@@ -1,16 +1,16 @@
 import { Router } from "express";
 import {
 	getItems,
-	addItem,
+	postItem,
 	deleteItem,
 	updateItem,
 	downloadItems,
 } from "../controllers/items";
 
-const itemsRouter: Router = Router();
+const itemsRouter = Router();
 
 itemsRouter.get("/items", getItems);
-itemsRouter.post("/items", addItem);
+itemsRouter.post("/items", postItem);
 itemsRouter.put("/items/:id", updateItem);
 itemsRouter.delete("/items/:id", deleteItem);
 itemsRouter.get("/items/download", downloadItems);
