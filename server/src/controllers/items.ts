@@ -93,7 +93,6 @@ const deleteItem = async (req: Request, res: Response): Promise<void> => {
 			params: { id },
 		} = req;
 		const deleteItem: IItem | null = await Item.findById(id);
-		console.log(deleteItem);
 		if (deleteItem) {
 			const deletedItem = await deleteItem.remove();
 			res.status(statusCodes.SUCCESS).json({

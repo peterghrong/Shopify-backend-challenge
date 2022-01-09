@@ -29,15 +29,6 @@ const CustomNav = () => {
 						<Nav.Link href="/new-item">Add Item</Nav.Link>
 						<Nav.Link onClick={download}>Export CSV</Nav.Link>
 					</Nav>
-					<Form className="d-flex">
-						<FormControl
-							type="search"
-							placeholder="Search"
-							className="me-2"
-							aria-label="Search"
-						/>
-						<Button variant="outline-success">Search</Button>
-					</Form>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>

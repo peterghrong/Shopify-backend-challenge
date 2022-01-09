@@ -101,4 +101,12 @@ describe("/items tests", () => {
 			}),
 		});
 	});
+
+	it("should get blob data", async () => {
+		const response = await request(app).get("/items/download");
+		expect(response.status).toBe(200);
+		console.log(response.body);
+		expect(response.body).not.toBeNull();
+		expect(response.body).toBeInstanceOf(Buffer);
+	});
 });
