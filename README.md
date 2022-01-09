@@ -1,7 +1,8 @@
 # Shopify-backend-challenge
 
-Hi! This repository contains my submission to the shopify internship challenge. The project contains basic CRUD functionalities:
+Hi! This repository contains my submission to the shopify internship challenge, built with the MERN stack with typescript. All the relevent backend codes are stored in [`server/src`](https://github.com/peterghrong/Shopify-backend-challenge/tree/main/server/src)
 
+The project contains basic CRUD functionalities:
 -   Create Inventory Item
 -   Edit them
 -   Delete them
@@ -93,6 +94,15 @@ In the server folder, run:
 ```
 yarn test
 ```
+
+## Screenshots
+1. Interface
+![Screen Shot 2022-01-09 at 3 22 47 PM](https://user-images.githubusercontent.com/66083521/148699451-9f694f61-937f-4cee-87b6-81d9ec4b1285.png)
+2. Click the Export CSV button to download the CSV file. 
+![Screen Shot 2022-01-09 at 3 25 10 PM](https://user-images.githubusercontent.com/66083521/148699502-14b439ba-35dc-4078-a1f9-68f5d71dacf0.png)
+3. Example CSV file downloaded. 
+![Screen Shot 2022-01-09 at 3 26 50 PM](https://user-images.githubusercontent.com/66083521/148699531-a8916be3-c7a9-46c2-9d09-53656bfb9340.png)
+
 
 ## Readings
 
