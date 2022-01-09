@@ -34,7 +34,7 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "./node_modules/.bin/nodemon",
-		"start": "tsc && node dist/server.js",
+		"start": "node dist/server.js",
 		"test": "jest",
 		"test-report": "jest --collect-coverage"
 	}
