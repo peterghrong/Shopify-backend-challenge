@@ -33,8 +33,8 @@
 	},
 	"scripts": {
 		"build": "tsc",
-		"start-dev": "./node_modules/.bin/nodemon",
-		"dev": "tsc && node dist/server.js",
+		"dev": "./node_modules/.bin/nodemon",
+		"start": "tsc && node dist/server.js",
 		"test": "jest",
 		"test-report": "jest --collect-coverage"
 	}
