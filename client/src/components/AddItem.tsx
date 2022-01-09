@@ -1,5 +1,4 @@
-import React from "react";
-import { Button, ButtonGroup, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { addItem } from "../api/api";
 
 const AddItem = () => {
