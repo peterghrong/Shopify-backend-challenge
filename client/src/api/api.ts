@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import download from "downloadjs";
 
-const baseUrl: string = "http://localhost:4000";
+const baseUrl: string = "https://peter-shopify-intern-challenge.herokuapp.com";
 
 export const getItems = async (): Promise<AxiosResponse<ApiDataType>> => {
 	try {
