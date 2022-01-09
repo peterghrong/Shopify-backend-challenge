@@ -18,9 +18,7 @@ app.use("*", (_, res) => res.status(404).json({ error: "Not Found" }));
 mongoose
 	.connect(`${process.env.DB}`)
 	.then(() =>
-		app.listen(PORT, () =>
-			console.log(`Server running on http://localhost:${PORT}`)
-		)
+		app.listen(PORT, () => console.log(`Server running on ${PORT}`))
 	)
 	.catch((error) => {
 		console.log(error);
