@@ -95,13 +95,9 @@ In the server folder, run:
 yarn test
 ```
 
-## Screenshots
-1. Interface
-![Screen Shot 2022-01-09 at 3 22 47 PM](https://user-images.githubusercontent.com/66083521/148699451-9f694f61-937f-4cee-87b6-81d9ec4b1285.png)
-2. Click the Export CSV button to download the CSV file. 
-![Screen Shot 2022-01-09 at 3 25 10 PM](https://user-images.githubusercontent.com/66083521/148699502-14b439ba-35dc-4078-a1f9-68f5d71dacf0.png)
-3. Example CSV file downloaded. 
-![Screen Shot 2022-01-09 at 3 26 50 PM](https://user-images.githubusercontent.com/66083521/148699531-a8916be3-c7a9-46c2-9d09-53656bfb9340.png)
+## Live Usage
+![Kapture 2022-01-10 at 13 04 48](https://user-images.githubusercontent.com/66083521/148816300-115603de-9b52-4959-b06b-608d8f3ae5dc.gif)
+
 
 
 ## Readings
