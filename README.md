@@ -1,6 +1,7 @@
 # Shopify-backend-challenge
 
-Hi! This repository contains my submission to the shopify internship challenge, built with the MERN stack with typescript. All the relevent backend codes are stored in [`server/src`](https://github.com/peterghrong/Shopify-backend-challenge/tree/main/server/src)
+Hi! This repository contains my submission to the shopify internship challenge, built with the MERN stack with typescript.  
+***All the relevent backend codes are stored in [`server/src`](https://github.com/peterghrong/Shopify-backend-challenge/tree/main/server/src)***
 
 The project contains basic CRUD functionalities:
 -   Create Inventory Item
@@ -66,7 +67,7 @@ yarn install
 3. Update the `baseUrl` variable in `/api/api.ts` to your desired `localhost` url, for example:
 
 ```typescript
-const baseUrl: string = "http://localhost:4000;
+const baseUrl: string = "http://localhost:4000";
 ```
 
 Now you have all the prerequesites to run the application in development enviroment.
