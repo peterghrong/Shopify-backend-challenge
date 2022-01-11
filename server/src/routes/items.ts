@@ -7,8 +7,10 @@ import {
 	downloadItems,
 } from "../controllers/items";
 
+/**
+ * Define various routes for the items controller
+ */
 const itemsRouter = Router();
-
 itemsRouter.get("/items", getItems);
 itemsRouter.post("/items", postItem);
 itemsRouter.put("/items/:id", updateItem);

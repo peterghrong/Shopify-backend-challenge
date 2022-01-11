@@ -14,12 +14,12 @@ const Item = ({ _id, name, description, count }: ItemProps) => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const putItem = () => {
-		updateItem(item);
+	const putItem = async () => {
+		await updateItem(item);
 	};
 
-	const removeItem = () => {
-		deleteItem(_id);
+	const removeItem = async () => {
+		await deleteItem(_id);
 	};
 
 	const item: IItem = {

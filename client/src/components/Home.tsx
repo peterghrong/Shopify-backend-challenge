@@ -6,8 +6,8 @@ import Item from "./Item";
 const Home = () => {
 	const [items, setItems] = useState<IItem[]>([]);
 
-	const fetchItems = (): void => {
-		getItems()
+	const fetchItems = async (): Promise<void> => {
+		await getItems()
 			.then(({ data: { items } }: IItem[] | any) => setItems(items))
 			.catch((error) => {
 				console.log(error);
