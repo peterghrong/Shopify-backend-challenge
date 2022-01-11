@@ -14,7 +14,9 @@ const getItems = async (_: Request, res: Response): Promise<void> => {
 		const items: IItem[] = await Item.find();
 		res.status(statusCodes.SUCCESS).json({ items: items });
 	} catch (err) {
-		res.status(500).json({ message: "Internal Server Error" });
+		res.status(statusCodes.SERVER_ERROR).json({
+			message: "Internal Server Error",
+		});
 	}
 };
 
@@ -34,7 +36,7 @@ const postItem = async (req: Request, res: Response): Promise<void> => {
 
 		const newItem = await item.save();
 
-		res.status(200).json({
+		res.status(statusCodes.SUCCESS).json({
 			item: newItem,
 		});
 	} catch (err) {
@@ -124,7 +126,7 @@ const downloadItems = async (_: Request, res: Response): Promise<void> => {
 	try {
 		const items: IItem[] = await Item.find();
 		const csvData = parseCSV(items);
-		res.status(200).send(Buffer.from(csvData));
+		res.status(statusCodes.SUCCESS).send(Buffer.from(csvData));
 	} catch (err) {
 		res.status(statusCodes.SERVER_ERROR).json({
 			message: "Internal Server error",
