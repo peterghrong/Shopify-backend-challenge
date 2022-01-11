@@ -7,7 +7,7 @@ const Home = () => {
 	const [items, setItems] = useState<IItem[]>([]);
 
 	const fetchItems = async (): Promise<void> => {
-		await getItems()
+		getItems()
 			.then(({ data: { items } }: IItem[] | any) => setItems(items))
 			.catch((error) => {
 				console.log(error);

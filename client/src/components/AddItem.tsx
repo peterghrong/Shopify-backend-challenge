@@ -1,7 +1,10 @@
 import { Button, Form } from "react-bootstrap";
 import { addItem } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 const AddItem = () => {
+	const navigate = useNavigate();
+
 	const item: IItem = {
 		_id: "",
 		name: "",
@@ -10,7 +13,7 @@ const AddItem = () => {
 	};
 
 	const submitItem = async () => {
-		await addItem(item);
+		addItem(item).then(() => navigate("/"));
 	};
 
 	return (
@@ -49,7 +52,7 @@ const AddItem = () => {
 					/>
 				</Form.Group>
 			</Form>
-			<Button variant="primary" onClick={submitItem} href="/">
+			<Button variant="primary" onClick={submitItem}>
 				Add Item
 			</Button>
 		</>

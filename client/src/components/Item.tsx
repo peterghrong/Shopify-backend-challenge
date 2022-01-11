@@ -15,11 +15,11 @@ const Item = ({ _id, name, description, count }: ItemProps) => {
 	const handleShow = () => setShow(true);
 
 	const putItem = async () => {
-		await updateItem(item);
+		updateItem(item).then(() => window.location.reload());
 	};
 
 	const removeItem = async () => {
-		await deleteItem(_id);
+		deleteItem(_id).then(() => window.location.reload());
 	};
 
 	const item: IItem = {
@@ -41,7 +41,7 @@ const Item = ({ _id, name, description, count }: ItemProps) => {
 						<Button variant="primary" onClick={handleShow}>
 							Edit
 						</Button>
-						<Button variant="danger" onClick={removeItem} href="/">
+						<Button variant="danger" onClick={removeItem}>
 							Delete
 						</Button>
 					</ButtonGroup>
@@ -99,7 +99,7 @@ const Item = ({ _id, name, description, count }: ItemProps) => {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary" onClick={putItem} href="/">
+					<Button variant="primary" onClick={putItem}>
 						Update
 					</Button>
 					<Button variant="secondary" onClick={handleClose}>
