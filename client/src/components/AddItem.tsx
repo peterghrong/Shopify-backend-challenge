@@ -9,8 +9,8 @@ const AddItem = () => {
 		count: 0,
 	};
 
-	const submitItem = () => {
-		addItem(item);
+	const submitItem = async () => {
+		await addItem(item);
 	};
 
 	return (

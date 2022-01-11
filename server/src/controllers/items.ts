@@ -77,9 +77,15 @@ const updateItem = async (req: Request, res: Response): Promise<void> => {
 			});
 		}
 	} catch (err) {
-		res.status(statusCodes.SERVER_ERROR).json({
-			message: "Internal Server error",
-		});
+		if (err instanceof mongoose.Error.ValidationError) {
+			res.status(statusCodes.BAD_REQUEST).json({
+				message: "Validation Error",
+			});
+		} else {
+			res.status(statusCodes.SERVER_ERROR).json({
+				message: "Internal Server error",
+			});
+		}
 	}
 };
 

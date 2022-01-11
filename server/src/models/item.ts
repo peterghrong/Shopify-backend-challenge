@@ -1,5 +1,5 @@
-import { IItem } from '../interfaces/item';
-import { model, Schema } from 'mongoose';
+import { IItem } from "../interfaces/item";
+import { model, Schema } from "mongoose";
 
 /** Mongoose Schema for the Inventory Item */
 const itemSchema: Schema = new Schema(
@@ -15,9 +15,10 @@ const itemSchema: Schema = new Schema(
 		count: {
 			type: Number,
 			required: true,
+			min: 0,
 		},
 	},
 	{ timestamps: true }
 );
 
-export default model<IItem>('Item', itemSchema);
+export default model<IItem>("Item", itemSchema);

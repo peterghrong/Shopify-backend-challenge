@@ -10,6 +10,7 @@ describe("/items tests", () => {
 	let mongod;
 	let app;
 	let id;
+	let item;
 
 	beforeAll(async () => {
 		app = express();
@@ -28,7 +29,7 @@ describe("/items tests", () => {
 	});
 
 	beforeEach(async () => {
-		const item = new Item({
+		item = new Item({
 			name: "test",
 			description: "test",
 			count: 1,
@@ -72,6 +73,26 @@ describe("/items tests", () => {
 		});
 	});
 
+	it("should return errors on post", async () => {
+		const response = await request(app).post("/items").send({
+			name: "missing params",
+			count: 2,
+		});
+		expect(response.status).toBe(400);
+		expect(response.body).toEqual({
+			message: "Validation Error",
+		});
+		const secondResponse = await request(app).post("/items").send({
+			name: "range error",
+			description: "range error",
+			count: -1,
+		});
+		expect(response.status).toBe(400);
+		expect(response.body).toEqual({
+			message: "Validation Error",
+		});
+	});
+
 	it("should update items", async () => {
 		const response = await request(app).put(`/items/${id}`).send({
 			name: "update test",
@@ -89,6 +110,28 @@ describe("/items tests", () => {
 		});
 	});
 
+	it("should return errors on put", async () => {
+		const response = await request(app).put(`/items/${id}`).send({
+			name: "missing params",
+			description: "missing params",
+		});
+		expect(response.status).toBe(400);
+		expect(response.body).toEqual({
+			message: "Validation Error",
+		});
+
+		await item.remove();
+		const secondResponse = await request(app).put(`/items/${id}`).send({
+			name: "invalid id",
+			description: "invalid id",
+			count: 1,
+		});
+		expect(secondResponse.status).toBe(401);
+		expect(secondResponse.body).toEqual({
+			message: "Item not found",
+		});
+	});
+
 	it("should delete items", async () => {
 		const response = await request(app).delete(`/items/${id}`);
 		expect(response.status).toBe(200);
@@ -102,10 +145,18 @@ describe("/items tests", () => {
 		});
 	});
 
+	it("should return error on delete", async () => {
+		await item.remove();
+		const response = await request(app).delete(`/items/${id}`);
+		expect(response.status).toBe(401);
+		expect(response.body).toEqual({
+			message: "Item not found",
+		});
+	});
+
 	it("should get blob data", async () => {
 		const response = await request(app).get("/items/download");
 		expect(response.status).toBe(200);
-		console.log(response.body);
 		expect(response.body).not.toBeNull();
 		expect(response.body).toBeInstanceOf(Buffer);
 	});
