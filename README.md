@@ -89,6 +89,13 @@ yarn start
 
 3. Go to the `localhost` you previously defined on the above step 3 to use the application.
 
+## Alternatively running with docker
+In the root folder:
+1. Add a ```.env``` file similar to above
+2. ```docker-compose build```
+3. ```docker-compose up```
+4. Go to ```localhost:3000```
+
 ## Run backend tests
 
 In the server folder, run:
@@ -98,14 +105,6 @@ yarn test
 ```
 
 ## Demo
-
-![Kapture 2022-01-10 at 13 04 48](https://user-images.githubusercontent.com/66083521/148816300-115603de-9b52-4959-b06b-608d8f3ae5dc.gif)
-
-3. `docker-compose up`
-
-4. Go to `localhost:4000`
-
-## Live Usage
 
 ![Kapture 2022-01-10 at 13 04 48](https://user-images.githubusercontent.com/66083521/148816300-115603de-9b52-4959-b06b-608d8f3ae5dc.gif)
 
