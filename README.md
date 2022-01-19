@@ -96,7 +96,7 @@ In the server folder, run:
 yarn test
 ```
 
-## Live Usage
+## Demo
 ![Kapture 2022-01-10 at 13 04 48](https://user-images.githubusercontent.com/66083521/148816300-115603de-9b52-4959-b06b-608d8f3ae5dc.gif)
 
 
