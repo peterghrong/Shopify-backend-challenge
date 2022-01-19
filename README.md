@@ -1,4 +1,4 @@
-# Shopify-backend-challenge
+# Shopify challenge
 
 Hi! This repository contains my submission to the shopify internship challenge, built with the MERN stack with typescript.  
 ***All the relevent backend codes are stored in [`server/src`](https://github.com/peterghrong/Shopify-backend-challenge/tree/main/server/src)***
