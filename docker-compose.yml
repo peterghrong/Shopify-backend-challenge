@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+    server:
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        image: shopify-server
+        container_name: shopify-node-server
+        command: yarn dev
+        volumes:
+            - ./server/:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - "4000:4000"
+        env_file: ./server/.env
+        environment:
+            - NODE_ENV=development
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        image: shopify-client
+        container_name: shopify-react-client
+        command: yarn start
+        volumes:
+            - ./client/:/usr/app
+            - /usr/app/node_modules
+        depends_on:
+            - server
+        ports:
+            - "3000:3000"

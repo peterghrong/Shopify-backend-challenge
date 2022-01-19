@@ -1,9 +1,10 @@
 # Shopify-backend-challenge
 
 Hi! This repository contains my submission to the shopify internship challenge, built with the MERN stack with typescript.  
-***All the relevent backend codes are stored in [`server/src`](https://github.com/peterghrong/Shopify-backend-challenge/tree/main/server/src)***
+**_All the relevent backend codes are stored in [`server/src`](https://github.com/peterghrong/Shopify-backend-challenge/tree/main/server/src)_**
 
 The project contains basic CRUD functionalities:
+
 -   Create Inventory Item
 -   Edit them
 -   Delete them
@@ -96,10 +97,19 @@ In the server folder, run:
 yarn test
 ```
 
+## Alternatively run with docker
+
+1. Add `.env` file to the server folder similar to above
+
+2. `docker-compose build`
+
+3. `docker-compose up`
+
+4. Go to `localhost:4000`
+
 ## Live Usage
+
 ![Kapture 2022-01-10 at 13 04 48](https://user-images.githubusercontent.com/66083521/148816300-115603de-9b52-4959-b06b-608d8f3ae5dc.gif)
-
-
 
 ## Readings
 
