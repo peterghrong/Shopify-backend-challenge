@@ -1,4 +1,4 @@
-# Shopify-backend-challenge
+# Shopify challenge
 
 Hi! This repository contains my submission to the shopify internship challenge, built with the MERN stack with typescript.  
 **_All the relevent backend codes are stored in [`server/src`](https://github.com/peterghrong/Shopify-backend-challenge/tree/main/server/src)_**
@@ -97,11 +97,9 @@ In the server folder, run:
 yarn test
 ```
 
-## Alternatively run with docker
+## Demo
 
-1. Add `.env` file to the server folder similar to above
-
-2. `docker-compose build`
+![Kapture 2022-01-10 at 13 04 48](https://user-images.githubusercontent.com/66083521/148816300-115603de-9b52-4959-b06b-608d8f3ae5dc.gif)
 
 3. `docker-compose up`
 
